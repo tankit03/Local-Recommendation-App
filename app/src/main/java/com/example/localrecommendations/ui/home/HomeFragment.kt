@@ -56,6 +56,7 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        //get from preference sheet for location setup search bar for restaurant
         viewModel.loadYelp("Corvallis", "restaurant")
         Log.d("Home OnResume","viewModel results: ${viewModel.yelp.value?.result?.get(0)?.name}")
         Log.d("Home OnResume","error results: ${viewModel.error.value.toString()}")
