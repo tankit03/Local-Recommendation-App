@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localrecommendations.R
@@ -39,7 +40,10 @@ class HomeFragment : Fragment() {
         yelpListRV.setHasFixedSize(true)
         yelpListRV.adapter = yelpAdapter
 
-        cityTV.text = "Corvallis"
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val city = sharedPref.getString(getString(R.string.pref_city_key), "Corvallis")!!
+
+        cityTV.text = city
 
         viewModel.yelp.observe(viewLifecycleOwner) { yelp ->
             if(yelp != null) {
@@ -57,7 +61,9 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         //get from preference sheet for location setup search bar for restaurant
-        viewModel.loadYelp("Corvallis", "restaurant")
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val city = sharedPref.getString(getString(R.string.pref_city_key), "Corvallis")!!
+        viewModel.loadYelp(city, "restaurant")
         Log.d("Home OnResume","viewModel results: ${viewModel.yelp.value?.result?.get(0)?.name}")
         Log.d("Home OnResume","error results: ${viewModel.error.value.toString()}")
 
