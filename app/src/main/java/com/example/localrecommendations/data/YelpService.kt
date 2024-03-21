@@ -37,13 +37,12 @@ interface YelpService {
                 addInterceptor(
                     Interceptor { chain ->
                         val builder = chain.request().newBuilder()
-                        builder.header("Authorization:", "Bearer vI2J-g8ElhZqM16uNzuxxHHHnbIPV5agHuMxoZ_SrwLGq5R8MweddX1cLC2nxf2v1wQa40L-JZhtxiZh7G08xMU5nkpRZUfz0IH3Nhj2ryADnorJ_ZvxbpoEPWH7ZXYx")
-                        builder.header("accept:", "application/json")
+                        builder.header("Authorization", "Bearer vI2J-g8ElhZqM16uNzuxxHHHnbIPV5agHuMxoZ_SrwLGq5R8MweddX1cLC2nxf2v1wQa40L-JZhtxiZh7G08xMU5nkpRZUfz0IH3Nhj2ryADnorJ_ZvxbpoEPWH7ZXYx")
+//                        builder.header("accept", "application/json")
                         return@Interceptor chain.proceed(builder.build())
                     }
                 )
             }.build()
-
 
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)

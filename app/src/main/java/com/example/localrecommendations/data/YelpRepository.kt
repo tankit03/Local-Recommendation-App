@@ -1,7 +1,9 @@
 package com.example.localrecommendations.data
 
+import android.util.Log
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.lang.Exception
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.TimeSource
@@ -24,19 +26,22 @@ class YelpRepository (
         term: String
     ) :Result<YelpResult?> {
         return if (shouldFetch(location, term)) {
-            try {
-                val response = service.loadSearch(location, term)
-                if (response.isSuccessful) {
-                    cachedYelp = response.body()
-                    timeStamp = timeSource.markNow()
-                    currentLocation = location
-                    currentTerm = term
-                    Result.success(cachedYelp)
-                } else {
-                    Result.failure(Exception(response.errorBody()?.string()))
+            withContext(ioDispatcher) {
+                try {
+                    val response = service.loadSearch(location, term)
+                    if (response.isSuccessful) {
+                        cachedYelp = response.body()
+                        Log.d("Repository","response body: ${response.body().toString()}")
+                        timeStamp = timeSource.markNow()
+                        currentLocation = location
+                        currentTerm = term
+                        Result.success(cachedYelp)
+                    } else {
+                        Result.failure(Exception(response.errorBody()?.string()))
+                    }
+                } catch (e: Exception) {
+                    Result.failure(e)
                 }
-            } catch (e: Exception) {
-                throw UnsupportedOperationException("Uh Oh. Something broke")
             }
         } else {
             Result.success(cachedYelp!!)

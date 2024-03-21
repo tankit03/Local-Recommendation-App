@@ -15,7 +15,7 @@ class Businesses (
     val id: String, //unique business id. probably don't need
     val alias: String, //a bit more detailed than the name e.g. castor-kitchen-and-bar-corvallis
     val name: String, //restaurant name e.g. Castor Kitchen & Bar
-    val imageURL: String, //image URL. Maybe add an image to the individual restaurant card??
+    val imageURL: String?, //image URL. Maybe add an image to the individual restaurant card?? uncomment breaks this
     val url: String, //website URL. Would be good to link somewhere
     val categories: List<Category>, //the categories for the restaurant e.g. new american
     val rating: Float, //restaurant rating e.g. 4.5
