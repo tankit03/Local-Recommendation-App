@@ -9,7 +9,9 @@ import com.example.localrecommendations.R
 import com.example.localrecommendations.data.Businesses
 import com.example.localrecommendations.data.YelpResult
 
-class YelpAdapter () : RecyclerView.Adapter<YelpAdapter.ViewHolder>() {
+class YelpAdapter (
+    private val onYelpClick: (Businesses) -> Unit
+) : RecyclerView.Adapter<YelpAdapter.ViewHolder>() {
     var yelpResults: MutableList<Businesses> = mutableListOf()
 
     fun updateList(result: YelpResult?) {
@@ -23,16 +25,22 @@ class YelpAdapter () : RecyclerView.Adapter<YelpAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.yelp_item, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, onYelpClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(yelpResults[position])
     }
 
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder (itemView: View, onClick: (Businesses) -> Unit) : RecyclerView.ViewHolder(itemView) {
         private val nameTV: TextView = itemView.findViewById(R.id.tv_name)
         private lateinit var currentBusiness: Businesses
+
+        init {
+            itemView.setOnClickListener {
+                currentBusiness?.let(onClick)
+            }
+        }
         fun bind(business: Businesses) {
             currentBusiness = business
 

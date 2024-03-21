@@ -9,17 +9,19 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.localrecommendations.R
+import com.example.localrecommendations.data.Businesses
 import com.example.localrecommendations.databinding.FragmentHomeBinding
 import com.example.localrecommendations.ui.YelpAdapter
 import com.google.android.material.progressindicator.CircularProgressIndicator
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels ()
-    private val yelpAdapter = YelpAdapter()
+    private val yelpAdapter = YelpAdapter(::onYelpClick)
 
     private lateinit var cityTV: TextView
     private lateinit var yelpListRV: RecyclerView
@@ -39,12 +41,12 @@ class HomeFragment : Fragment() {
         yelpListRV.setHasFixedSize(true)
         yelpListRV.adapter = yelpAdapter
 
-        cityTV.text = "Corvallis"
+        cityTV.text = "Restaurants"
 
         viewModel.yelp.observe(viewLifecycleOwner) { yelp ->
             if(yelp != null) {
                 yelpAdapter.updateList(yelp)
-                Log.d("Home", "Yelp Result: $yelp")
+                Log.d("Home", "Yelp Result: ${yelp.result?.get(1)?.imageURL}")
                 Log.d("Home", "Businesses: ${yelp.result}")
                 yelpListRV.visibility = View.VISIBLE
                 yelpListRV.scrollToPosition(0)
@@ -57,7 +59,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.loadYelp("Corvallis", "restaurant")
-        Log.d("Home OnResume","viewModel results: ${viewModel.yelp.value?.result?.get(0)?.name}")
+        Log.d("Home OnResume","viewModel results: ${viewModel.yelp.value?.result?.get(1)?.imageURL}")
         Log.d("Home OnResume","error results: ${viewModel.error.value.toString()}")
 
     }
@@ -85,5 +87,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onYelpClick (business: Businesses) {
+        Log.v("OnSavedClick", "Weather entity name: ${business.name}")
+        findNavController().navigate(HomeFragmentDirections.navigateToBusiness())
     }
 }
