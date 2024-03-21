@@ -2,10 +2,7 @@ package com.example.localrecommendations
 
 import android.os.Bundle
 import android.view.Menu
-<<<<<<< HEAD
-=======
 import android.view.MenuItem
->>>>>>> 1204751 (Added Setting's fragment which navigates to the setting's page)
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
