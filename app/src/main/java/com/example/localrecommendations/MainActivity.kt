@@ -2,6 +2,10 @@ package com.example.localrecommendations
 
 import android.os.Bundle
 import android.view.Menu
+<<<<<<< HEAD
+=======
+import android.view.MenuItem
+>>>>>>> 1204751 (Added Setting's fragment which navigates to the setting's page)
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -54,4 +58,18 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                // Handle the click on the settings action
+                val navController = findNavController(R.id.nav_host_fragment_content_main)
+                navController.navigate(R.id.fragment_setting)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
 }
