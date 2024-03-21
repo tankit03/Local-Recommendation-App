@@ -8,36 +8,42 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceFragmentCompat
+import com.example.localrecommendations.R
 import com.example.localrecommendations.databinding.FragmentSettingBinding
-class SettingFragment : Fragment() {
+class SettingFragment : PreferenceFragmentCompat() {
 
-    private var _binding: FragmentSettingBinding? = null
+//    private var _binding: FragmentSettingBinding? = null
+//
+//    // This property is only valid between onCreateView and
+//    // onDestroyView.
+//    private val binding get() = _binding!!
+//
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View {
+//        val settingViewModel =
+//            ViewModelProvider(this).get(SettingViewModel::class.java)
+//
+//        _binding = FragmentSettingBinding.inflate(inflater, container, false)
+//        val root: View = binding.root
+//
+//        val textView: TextView = binding.textSetting
+//        settingViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
+//        return root
+//    }
+//
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val settingViewModel =
-            ViewModelProvider(this).get(SettingViewModel::class.java)
-
-        _binding = FragmentSettingBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textSetting
-        settingViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.settings, rootKey)
     }
 
 

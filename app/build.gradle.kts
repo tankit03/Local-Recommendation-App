@@ -61,6 +61,7 @@ dependencies {
 
 
     implementation("com.squareup.moshi:moshi:1.15.0")
+    implementation("androidx.preference:preference-ktx:1.2.1")
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
 
     testImplementation("junit:junit:4.13.2")
