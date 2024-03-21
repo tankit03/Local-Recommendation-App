@@ -33,7 +33,7 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
 
         val textView: TextView = binding.textGallery
         galleryViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+            textView.text = args.business.name
         }
         return root
     }

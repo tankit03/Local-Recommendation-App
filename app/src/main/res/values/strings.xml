@@ -10,9 +10,9 @@
     <string name="result_name">%1$s</string>
 
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Food</string>
+    <string name="menu_gallery">Activities</string>
+    <string name="menu_slideshow">Night Life</string>
 
     <string name="pref_category_search">Search settings</string>
 
