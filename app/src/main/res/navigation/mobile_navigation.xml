@@ -32,7 +32,12 @@
         android:id="@+id/nav_business"
         android:name="com.example.localrecommendations.ui.business.BusinessFragment"
         android:label="Business"
-        tools:layout="@layout/fragment_business"/>
+        tools:layout="@layout/fragment_business">
+        <!--suppress NavigationFile -->
+        <argument
+            android:name="business"
+            app:argType="com.example.localrecommendations.data.Businesses"/>
+    </fragment>
 
     <action
         android:id="@+id/navigate_to_business"

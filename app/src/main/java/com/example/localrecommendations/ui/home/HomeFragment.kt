@@ -98,6 +98,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun onYelpClick (business: Businesses) {
         Log.v("OnSavedClick", "Weather entity name: ${business.name}")
-        findNavController().navigate(HomeFragmentDirections.navigateToBusiness())
+        findNavController().navigate(HomeFragmentDirections.navigateToBusiness(business))
     }
 }

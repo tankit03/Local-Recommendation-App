@@ -1,8 +1,8 @@
 package com.example.localrecommendations.data
 
-import com.squareup.moshi.FromJson
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 class YelpResult (
@@ -21,7 +21,7 @@ class Businesses (
     val rating: Float, //restaurant rating e.g. 4.5
     val phone: String, //restaurant phone number
     val location: Location
-)
+) : Serializable
 
 @JsonClass(generateAdapter = true)
 class Category (
