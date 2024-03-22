@@ -6,9 +6,7 @@
     <EditTextPreference
         android:title="@string/pref_user_city"
         android:key="@string/pref_city_key"
-        android:defaultValue="Corvallis"
+        android:defaultValue="none"
         app:useSimpleSummaryProvider="true" />
-
-
 
 </PreferenceScreen>
