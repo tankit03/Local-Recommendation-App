@@ -15,7 +15,7 @@ class YelpAdapter (
     var yelpResults: MutableList<Businesses> = mutableListOf()
 
     fun updateList(result: YelpResult?) {
-        notifyItemRangeRemoved(0,yelpResults.size)
+        notifyItemRangeRemoved(0, yelpResults.size)
         yelpResults = (result?.result ?: listOf()).toMutableList()
         notifyItemRangeInserted(0, yelpResults.size)
     }
@@ -25,28 +25,28 @@ class YelpAdapter (
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.yelp_item, parent, false)
-        return ViewHolder(view, onYelpClick)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(yelpResults[position])
     }
 
-    class ViewHolder (itemView: View, onClick: (Businesses) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTV: TextView = itemView.findViewById(R.id.tv_name)
-        private lateinit var currentBusiness: Businesses
+        private val categoriesTV: TextView = itemView.findViewById(R.id.tv_categories)
 
-        init {
-            itemView.setOnClickListener {
-                currentBusiness?.let(onClick)
-            }
-        }
         fun bind(business: Businesses) {
-            currentBusiness = business
-
             val ctx = itemView.context
 
             nameTV.text = ctx.getString(R.string.result_name, business.name)
+
+            // Prepare categories text
+            val categoriesText = business.categories.joinToString(", ") { it.title }
+
+            // Set categories text
+            categoriesTV.text = categoriesText
         }
     }
 }
+
