@@ -25,20 +25,28 @@ class YelpAdapter (
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.yelp_item, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, onYelpClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(yelpResults[position])
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, onClick: (Businesses) -> Unit) : RecyclerView.ViewHolder(itemView) {
         private val nameTV: TextView = itemView.findViewById(R.id.tv_name)
         private val categoriesTV: TextView = itemView.findViewById(R.id.tv_categories)
+        private lateinit var currentBusiness: Businesses
+
+        init {
+            itemView.setOnClickListener {
+                // When the user taps on the item, call the onYelpClick lambda
+                currentBusiness?.let(onClick)
+            }
+        }
 
         fun bind(business: Businesses) {
             val ctx = itemView.context
-
+            currentBusiness = business
             nameTV.text = ctx.getString(R.string.result_name, business.name)
 
             // Prepare categories text
