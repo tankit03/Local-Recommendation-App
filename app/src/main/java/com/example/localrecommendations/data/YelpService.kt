@@ -28,6 +28,18 @@ interface YelpService {
         //could add category if we wanted to??
     ) : Response<YelpResult>
 
+    @GET("businesses/search")
+    suspend fun loadLonLatSearch(
+        @Query("latitude") latitude: String,
+        @Query("longitude") longitude: String,
+        @Query("term") term: String, //Search term e.g. restaurant, deli, etc. gives everything if left out
+        @Query("open_now") open: String? = "true", //open now. should be true (unless we want to search for closed places)
+        @Query("sort_by") sort: String = "best_match",
+        @Query("limit") limit: Int = 20 //limit to number of results.
+        //@Query("offset") offset: Int = 0 //amount to offset. only need if we want more than 1 page available
+        //could add category if we wanted to??
+    ) : Response<YelpResult>
+
     //Client implementation info found here: https://proandroiddev.com/headers-in-retrofit-a8d71ede2f3e
     companion object {
         private const val BASE_URL = "https://api.yelp.com/v3/"

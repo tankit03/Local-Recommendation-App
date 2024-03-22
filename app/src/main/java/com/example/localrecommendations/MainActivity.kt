@@ -143,6 +143,7 @@ class MainActivity : AppCompatActivity() {
                 ) == PackageManager.PERMISSION_GRANTED
     }
 
+    //Cant grab location. VM does not allow me to add a location (maps does not show up)'
     @SuppressLint("MissingPermission", "SetTextI18n")
     private fun getLocation() {
         if (checkPermissions()) {
@@ -159,7 +160,7 @@ class MainActivity : AppCompatActivity() {
                         binding.apply {
                             val editor = sharedPreferences.edit()
                             Log.d("getLocation","Location gotten: ${list[0].longitude.toString()},${list[0].latitude.toString()} ")
-                            editor.putString("city", "LONLAT:" + list[0].longitude.toString() + ","+list[0].latitude.toString())
+//                            editor.putString("city", "LONLAT:" + list[0].longitude.toString() + ","+list[0].latitude.toString())
                         }
                     }
                 }
