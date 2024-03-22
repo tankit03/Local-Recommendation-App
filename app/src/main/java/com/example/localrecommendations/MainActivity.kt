@@ -1,5 +1,6 @@
 package com.example.localrecommendations
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -28,10 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navHostFragment =
@@ -47,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        binding.appBarMain.fab.hide()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -69,6 +69,21 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun setupFabForBusinessShare(name: String, categories: String, address: String, website: String) {
+        binding.appBarMain.fab.apply {
+            show() // Make sure the FAB is visible
+            setOnClickListener { view ->
+                val shareText = "Check out this place: $name, Categories: $categories, Address: $address, Website: $website"
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, shareText)
+                    type = "text/plain"
+                }
+                startActivity(Intent.createChooser(intent, "Share via"))
+            }
         }
     }
 
