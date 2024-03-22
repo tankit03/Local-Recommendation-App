@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,53 +22,105 @@
         android:layout_marginEnd="16dp"/>
 
     <TextView
-        android:id="@+id/text_address"
+        android:id="@+id/text_address_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Address:"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/text_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"/>
 
     <TextView
-        android:id="@+id/text_phone"
+        android:id="@+id/text_address_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/text_address_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_address"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"/>
 
     <TextView
-        android:id="@+id/text_rating"
+        android:id="@+id/text_phone_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="14sp"
+        android:text="Phone:"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/text_address_value"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_phone"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"/>
 
     <TextView
-        android:id="@+id/text_website"
+        android:id="@+id/text_phone_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/text_phone_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_rating"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"/>
 
     <TextView
-        android:id="@+id/text_categories"
+        android:id="@+id/text_rating_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="14sp"
+        android:text="Rating:"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/text_phone_value"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_website"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/text_rating_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_rating_label"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/text_website_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Website:"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/text_rating_value"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/text_website_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        app:layout_constraintTop_toBottomOf="@id/text_website_label"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+
+    <TextView
+        android:id="@+id/text_categories_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categories:"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/text_website_value"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/text_categories_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_categories_label"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

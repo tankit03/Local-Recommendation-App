@@ -1,5 +1,7 @@
 package com.example.localrecommendations.ui.home
 
+import android.content.Context
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -29,6 +31,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var loadingErrorTV: TextView
     private lateinit var loadingIndicator: CircularProgressIndicator
 
+    private lateinit var locationManager: LocationManager
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,6 +45,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         yelpListRV.visibility = View.VISIBLE
         yelpListRV.setHasFixedSize(true)
         yelpListRV.adapter = yelpAdapter
+
 
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val city = sharedPref.getString(getString(R.string.pref_city_key), "Corvallis")!!
@@ -100,4 +105,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         Log.v("OnSavedClick", "Weather entity name: ${business.name}")
         findNavController().navigate(HomeFragmentDirections.navigateToBusiness(business))
     }
+
+
 }

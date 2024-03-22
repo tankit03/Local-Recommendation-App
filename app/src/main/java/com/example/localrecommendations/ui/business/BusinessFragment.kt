@@ -32,17 +32,14 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
 
         // Bind the business details to the views
         binding.textGallery.text = business.name
-        binding.textAddress.text = business.location.addr.joinToString(", ")
-        binding.textPhone.text = business.phone
-        binding.textRating.text = "Rating: ${business.rating}" // Display rating
-//        binding.textWebsite.text = "Website: ${business.url}" // Display website
+        binding.textAddressValue.text = business.location.addr.joinToString(", ")
+        binding.textPhoneValue.text = business.phone
+        binding.textRatingValue.text = business.rating.toString()
+        binding.textWebsiteValue.text = business.url
 
         // Display categories
         val categories = business.categories.joinToString { it.title }
-        binding.textCategories.text = "Categories: $categories"
-
-        // Load image using Picasso (you can use any other image loading library)
-//        Picasso.get().load(business.imageURL).into(binding.imageBusiness)
+        binding.textCategoriesValue.text = categories
 
         // Configure the FAB in MainActivity to share these details
         val name = business.name
@@ -51,6 +48,7 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
         val website = business.url
         (activity as? MainActivity)?.setupFabForBusinessShare(name, categoriesText, address, website)
     }
+
 
 
 
