@@ -59,6 +59,9 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
+    implementation("com.squareup.picasso:picasso:2.71828")
+
+
 
     implementation("com.squareup.moshi:moshi:1.15.0")
     implementation("androidx.preference:preference-ktx:1.2.1")
