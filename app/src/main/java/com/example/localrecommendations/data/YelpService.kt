@@ -1,11 +1,9 @@
 package com.example.localrecommendations.data
 
-import com.squareup.moshi.Moshi
 import retrofit2.converter.moshi.MoshiConverterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Response
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -30,8 +28,8 @@ interface YelpService {
 
     @GET("businesses/search")
     suspend fun loadLonLatSearch(
-        @Query("latitude") latitude: String,
-        @Query("longitude") longitude: String,
+        @Query("latitude") latitude: Double,
+        @Query("longitude") longitude: Double,
         @Query("term") term: String, //Search term e.g. restaurant, deli, etc. gives everything if left out
         @Query("open_now") open: String? = "true", //open now. should be true (unless we want to search for closed places)
         @Query("sort_by") sort: String = "best_match",

@@ -1,9 +1,12 @@
 package com.example.localrecommendations.data
 
 import android.util.Log
+import com.example.localrecommendations.util.isLonLat
+import com.example.localrecommendations.util.parseLocation
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 import java.lang.Exception
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.TimeSource
@@ -25,10 +28,21 @@ class YelpRepository (
         location: String?,
         term: String
     ) :Result<YelpResult?> {
+        if (location == null) {
+            val location = "Corvallis"
+        }
         return if (shouldFetch(location, term)) {
             withContext(ioDispatcher) {
                 try {
-                    val response = service.loadSearch(location, term)
+                    var response = service.loadSearch(location, term)
+                    if (isLonLat(location!!)){
+                        val lonlat = parseLocation(location)
+                        if (lonlat != null) {
+                            val (a, b) = lonlat
+                            response = service.loadLonLatSearch(a,b, term)
+                        }
+                    }
+
                     if (response.isSuccessful) {
                         cachedYelp = response.body()
                         Log.d("Repository","response body: ${response.body().toString()}")
