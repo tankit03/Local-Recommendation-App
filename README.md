@@ -43,7 +43,7 @@ To get a local copy up and running, follow these simple steps:
 
 1. Clone the repo
    ```
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/your_username_/Local-Recommendation-App.git
    ```
 2. Open the project in your IDE of choice (Android Studio recommended for Android apps).
 3. Obtain a Yelp Fusion API key and add it to your project as indicated in the YelpService class.
